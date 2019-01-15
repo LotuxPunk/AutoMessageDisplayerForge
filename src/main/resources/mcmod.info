@@ -1,0 +1,16 @@
+[
+{
+  "modid": "amd",
+  "name": "AutoMessageDisplayer",
+  "description": "Distribute your messages automatically on your server.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["LotuxPunk"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
