@@ -3,7 +3,7 @@ package com.vandendaelen.automessagedisplayer.utils;
 public class Reference {
     public static final String MOD_ID = "amd";
     public static final String MOD_NAME = "AutoMessageDisplayer";
-    public static final String DEP = "required-after:forge@[14.23.4.2768,)";
+    public static final String DEP = "required-after:forge@[14.23.4.2807,)";
 
     public static class VERSION{
         public static final String MCVERSION = "1.12.2";
