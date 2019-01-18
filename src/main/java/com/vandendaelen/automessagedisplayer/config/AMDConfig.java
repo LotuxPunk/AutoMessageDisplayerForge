@@ -16,6 +16,14 @@ public class AMDConfig {
         @Config.Comment("Messages to displays")
         public String[] messages = {"Thanks for downloading AutoMessageDisplayer", "Cake or pie ?"};
 
+        @Config.LangKey("amd.config.prefix")
+        @Config.Comment("Prefix of the message")
+        public String prefix = "AutoMessageDisplayer";
+
+        @Config.LangKey("amd.config.enable.prefix")
+        @Config.Comment("Enable prefix before the message ?")
+        public boolean enablePrefix = true;
+
         @Config.LangKey("amd.config.update")
         @Config.Comment("Check if an update exist ?")
         public boolean updateChecker = true;
