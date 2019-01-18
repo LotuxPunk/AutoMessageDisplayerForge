@@ -1,0 +1,11 @@
+{
+  "homepage": "https://minecraft.curseforge.com/projects/automessagedisplayer",
+  "promos": {
+    "1.12.2-latest": "1.12.2-0.0.0.2",
+    "1.12.2-recommended": "1.12.2-0.0.0.2"
+  },
+  "1.12.2": {
+    "1.12.2-0.0.0.1": "First release",
+    "1.12.2-0.0.0.2": "Bug fix"
+  }
+}
