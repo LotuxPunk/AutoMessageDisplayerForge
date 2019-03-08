@@ -5,14 +5,15 @@ import com.vandendaelen.automessagedisplayer.config.AMDConfig;
 import com.vandendaelen.automessagedisplayer.utils.PlayerHelper;
 import com.vandendaelen.automessagedisplayer.utils.Reference;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 
 import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
-public class AMDEventHandler {
+class AMDEventHandler {
     public static int countdown = 0;
     public static int END_COUNTDOWN = 0;
     public static int iMsg = 0;
@@ -27,7 +28,7 @@ public class AMDEventHandler {
 
         message.append(AMDConfig.GENERAL.messages[iMsg]);
         PlayerHelper.sendMessageToAllPlayer(message.toString());
-        AutoMessageDisplayer.logger.info("Message displayed : "+ message.toString());
+        AutoMessageDisplayer.LOGGER.info("Message displayed : "+ message.toString());
 
         if (!AMDConfig.GENERAL.random){
             iMsg++;
@@ -45,5 +46,11 @@ public class AMDEventHandler {
                 countdown = 0;
             }
         }
+    }
+
+    @SubscribeEvent
+    public void serverStarted(FMLServerStartedEvent event){
+        AMDEventHandler.END_COUNTDOWN = AMDConfig.GENERAL.minutes * 60 * 20;
+        AutoMessageDisplayer.LOGGER.info(AMDEventHandler.END_COUNTDOWN);
     }
 }
