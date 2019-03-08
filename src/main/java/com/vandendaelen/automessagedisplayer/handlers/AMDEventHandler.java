@@ -13,26 +13,26 @@ import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
-class AMDEventHandler {
+public class AMDEventHandler {
     public static int countdown = 0;
     public static int END_COUNTDOWN = 0;
     public static int iMsg = 0;
 
     public static void messageDisplayer(){
         StringBuilder message = new StringBuilder();
-        if (AMDConfig.GENERAL.enablePrefix) message.append("["+ TextFormatting.DARK_AQUA+AMDConfig.GENERAL.prefix+TextFormatting.RESET+"] ");
-        if (AMDConfig.GENERAL.random){
+        if (AMDConfig.getEnablePrefix()) message.append("["+ TextFormatting.DARK_AQUA+AMDConfig.getPrefix()+TextFormatting.RESET+"] ");
+        if (AMDConfig.getRandom()){
             Random r = new Random();
-            iMsg = r.nextInt(AMDConfig.GENERAL.messages.length);
+            iMsg = r.nextInt(AMDConfig.getMessages().length);
         }
 
-        message.append(AMDConfig.GENERAL.messages[iMsg]);
+        message.append(AMDConfig.getMessages()[iMsg]);
         PlayerHelper.sendMessageToAllPlayer(message.toString());
         AutoMessageDisplayer.LOGGER.info("Message displayed : "+ message.toString());
 
-        if (!AMDConfig.GENERAL.random){
+        if (!AMDConfig.getRandom()){
             iMsg++;
-            if (iMsg >= AMDConfig.GENERAL.messages.length)
+            if (iMsg >= AMDConfig.getMessages().length)
                 iMsg = 0;
         }
     }
@@ -50,7 +50,7 @@ class AMDEventHandler {
 
     @SubscribeEvent
     public void serverStarted(FMLServerStartedEvent event){
-        AMDEventHandler.END_COUNTDOWN = AMDConfig.GENERAL.minutes * 60 * 20;
+        AMDEventHandler.END_COUNTDOWN = AMDConfig.getTimer() * 60 * 20;
         AutoMessageDisplayer.LOGGER.info(AMDEventHandler.END_COUNTDOWN);
     }
 }

@@ -49,27 +49,27 @@ public class AMDConfig{
         builder.pop();
     }
 
-    public int getTimer() {
+    public static int getTimer() {
         return CONFIG.timer.get();
     }
 
-    public String[] getMessages() {
+    public static String[] getMessages() {
         return CONFIG.messages.get();
     }
 
-    public String getPrefix() {
+    public static String getPrefix() {
         return CONFIG.prefix.get();
     }
 
-    public boolean getEnablePrefix() {
+    public static boolean getEnablePrefix() {
         return CONFIG.enablePrefix.get();
     }
 
-    public boolean getUpdateChecker() {
+    public static boolean getUpdateChecker() {
         return CONFIG.updateChecker.get();
     }
 
-    public boolean getRandom() {
+    public static boolean getRandom() {
         return CONFIG.random.get();
     }
 }
