@@ -3,12 +3,15 @@ package com.vandendaelen.automessagedisplayer.config;
 import net.minecraftforge.common.ForgeConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class AMDConfig{
     public static final AMDConfig CONFIG;
     public static final ForgeConfigSpec CONFIG_SPEC;
     
     public final ForgeConfigSpec.IntValue timer;
-    public final ForgeConfigSpec.ConfigValue<String[]> messages;
+    public final ForgeConfigSpec.ConfigValue<List<String>> messages;
     public final ForgeConfigSpec.ConfigValue<String> prefix;
     public final ForgeConfigSpec.BooleanValue enablePrefix;
     public final ForgeConfigSpec.BooleanValue updateChecker;
@@ -29,7 +32,8 @@ public class AMDConfig{
         messages = builder
                 .comment("Messages to displays")
                 .translation("amd.config.messages")
-                .define("messages",new String[]{"Thanks for downloading AutoMessageDisplayer", "Cake or pie ?"});
+                .define("messages", Arrays.asList("Thanks for downloading AutoMessageDisplayer", "Cake or pie ?"));
+                //.defineList("messages", Arrays.asList("Thanks for downloading AutoMessageDisplayer", "Cake or pie ?"), null);
         prefix = builder
                 .comment("Prefix of the message")
                 .translation("amd.config.prefix")
@@ -53,7 +57,7 @@ public class AMDConfig{
         return CONFIG.timer.get();
     }
 
-    public static String[] getMessages() {
+    public static List<String> getMessages() {
         return CONFIG.messages.get();
     }
 

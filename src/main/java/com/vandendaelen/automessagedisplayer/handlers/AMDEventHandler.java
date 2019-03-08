@@ -23,16 +23,16 @@ public class AMDEventHandler {
         if (AMDConfig.getEnablePrefix()) message.append("["+ TextFormatting.DARK_AQUA+AMDConfig.getPrefix()+TextFormatting.RESET+"] ");
         if (AMDConfig.getRandom()){
             Random r = new Random();
-            iMsg = r.nextInt(AMDConfig.getMessages().length);
+            iMsg = r.nextInt(AMDConfig.getMessages().size());
         }
 
-        message.append(AMDConfig.getMessages()[iMsg]);
+        message.append(AMDConfig.getMessages().toArray()[iMsg]);
         PlayerHelper.sendMessageToAllPlayer(message.toString());
         AutoMessageDisplayer.LOGGER.info("Message displayed : "+ message.toString());
 
         if (!AMDConfig.getRandom()){
             iMsg++;
-            if (iMsg >= AMDConfig.getMessages().length)
+            if (iMsg >= AMDConfig.getMessages().size())
                 iMsg = 0;
         }
     }
@@ -49,7 +49,7 @@ public class AMDEventHandler {
     }
 
     @SubscribeEvent
-    public void serverStarted(FMLServerStartedEvent event){
+    public static void serverStarted(FMLServerStartedEvent event){
         AMDEventHandler.END_COUNTDOWN = AMDConfig.getTimer() * 60 * 20;
         AutoMessageDisplayer.LOGGER.info(AMDEventHandler.END_COUNTDOWN);
     }
