@@ -16,6 +16,8 @@ public class AMDConfig{
     public final ForgeConfigSpec.BooleanValue enablePrefix;
     public final ForgeConfigSpec.BooleanValue updateChecker;
     public final ForgeConfigSpec.BooleanValue random;
+    public final ForgeConfigSpec.IntValue minPlayerOnline;
+
     
     static {
         Pair<AMDConfig, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(AMDConfig::new);
@@ -50,6 +52,9 @@ public class AMDConfig{
                 .comment("Display messages randomly")
                 .translation("amd.config.random")
                 .define("random",false);
+        minPlayerOnline = builder
+                .comment("Display messages only when there are at least X players online")
+                .defineInRange("minPlayerOnline",0, 0, 9999);
         builder.pop();
     }
 
@@ -75,5 +80,9 @@ public class AMDConfig{
 
     public static boolean getRandom() {
         return CONFIG.random.get();
+    }
+
+    public static int getMinPlayerRequired(){
+        return  CONFIG.minPlayerOnline.get();
     }
 }

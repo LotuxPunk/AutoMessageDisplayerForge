@@ -9,6 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 import java.util.Random;
 
@@ -39,7 +40,7 @@ public class AMDEventHandler {
 
     @SubscribeEvent
     public static void onServerUpdate(TickEvent.ServerTickEvent event){
-        if (event.phase == TickEvent.Phase.START ){
+        if (event.phase == TickEvent.Phase.START && ServerLifecycleHooks.getCurrentServer().getCurrentPlayerCount() >= AMDConfig.getMinPlayerRequired()){
             countdown++;
             if (countdown >= END_COUNTDOWN){
                 messageDisplayer();
