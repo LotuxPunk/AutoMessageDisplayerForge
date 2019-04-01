@@ -54,7 +54,7 @@ public class AMDConfig{
                 .define("random",false);
         minPlayerOnline = builder
                 .comment("Display messages only when there are at least X players online")
-                .defineInRange("minPlayerOnline",0, 0, 9999);
+                .defineInRange("minPlayerOnline",1, 0, 9999);
         builder.pop();
     }
 
