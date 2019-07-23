@@ -30,6 +30,6 @@ description='''This mod simply allows you to display a series of messages that y
 [[dependencies.automessagedisplayer]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.14.3]"
+    versionRange="[1.14.4]"
     ordering="NONE"
     side="BOTH"

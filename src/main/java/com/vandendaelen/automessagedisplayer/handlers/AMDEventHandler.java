@@ -21,7 +21,7 @@ public class AMDEventHandler {
 
     public static void messageDisplayer(){
         StringBuilder message = new StringBuilder();
-        if (AMDConfig.getEnablePrefix()) message.append("["+ TextFormatting.DARK_AQUA+AMDConfig.getPrefix()+TextFormatting.RESET+"] ");
+        if (AMDConfig.getEnablePrefix()) message.append("[" + TextFormatting.DARK_AQUA).append(AMDConfig.getPrefix()).append(TextFormatting.RESET).append("] ");
         if (AMDConfig.getRandom()){
             Random r = new Random();
             iMsg = r.nextInt(AMDConfig.getMessages().size());
