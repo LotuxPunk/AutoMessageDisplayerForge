@@ -16,33 +16,39 @@ import java.util.Random;
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class AMDEventHandler {
     public static int countdown = 0;
-    public static int END_COUNTDOWN = 0;
     public static int iMsg = 0;
 
-    public static void messageDisplayer(){
-        StringBuilder message = new StringBuilder();
-        if (AMDConfig.getEnablePrefix()) message.append("[" + TextFormatting.DARK_AQUA).append(AMDConfig.getPrefix()).append(TextFormatting.RESET).append("] ");
-        if (AMDConfig.getRandom()){
+    public static void messageDisplayer() {
+        String message = null;
+
+        //Prefix
+        StringBuilder text = new StringBuilder();
+        if (AMDConfig.getEnablePrefix())
+            text.append("[").append(TextFormatting.DARK_AQUA).append(AMDConfig.getPrefix()).append(TextFormatting.RESET).append("] ");
+
+        if (AMDConfig.getRandom()) {
             Random r = new Random();
             iMsg = r.nextInt(AMDConfig.getMessages().size());
-        }
+        } else {
+            if (iMsg < AMDConfig.getMessages().size()) {
+                message = AMDConfig.getMessage(iMsg);
+            }
 
-        message.append(AMDConfig.getMessages().toArray()[iMsg]);
-        PlayerHelper.sendMessageToAllPlayer(message.toString());
-        AutoMessageDisplayer.LOGGER.info("Message displayed : "+ message.toString());
-
-        if (!AMDConfig.getRandom()){
             iMsg++;
             if (iMsg >= AMDConfig.getMessages().size())
                 iMsg = 0;
         }
+
+        text.append(message);
+        PlayerHelper.sendMessageToAllPlayer(text.toString());
+        AutoMessageDisplayer.LOGGER.info("Message displayed : " + text.toString());
     }
 
     @SubscribeEvent
     public static void onServerUpdate(TickEvent.ServerTickEvent event){
         if (event.phase == TickEvent.Phase.START && ServerLifecycleHooks.getCurrentServer().getCurrentPlayerCount() >= AMDConfig.getMinPlayerRequired()){
             countdown++;
-            if (countdown >= END_COUNTDOWN){
+            if (countdown >= AMDConfig.getTimer()){
                 messageDisplayer();
                 countdown = 0;
             }
@@ -51,7 +57,6 @@ public class AMDEventHandler {
 
     @SubscribeEvent
     public static void serverStarted(FMLServerStartedEvent event){
-        AMDEventHandler.END_COUNTDOWN = AMDConfig.getTimer() * 60 * 20;
-        AutoMessageDisplayer.LOGGER.info(AMDEventHandler.END_COUNTDOWN);
+        AutoMessageDisplayer.LOGGER.info(AMDConfig.getTimer());
     }
 }
