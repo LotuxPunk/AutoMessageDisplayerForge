@@ -18,7 +18,7 @@ public class AMDConfig {
 
     public static class Common{
         public final ForgeConfigSpec.IntValue timer;
-        public final ForgeConfigSpec.ConfigValue<List<String>> messages;
+        public final ForgeConfigSpec.ConfigValue<List<? extends String>> messages;
         public final ForgeConfigSpec.ConfigValue<String> prefix;
         public final ForgeConfigSpec.BooleanValue enablePrefix;
         public final ForgeConfigSpec.BooleanValue updateChecker;
@@ -34,7 +34,7 @@ public class AMDConfig {
             messages = builder
                     .comment("Messages to displays")
                     .translation("amd.config.messages")
-                    .define("messages",  Arrays.asList("Thanks for downloading AutoMessageDisplayer", "Cake or pie ?"));
+                    .defineList("messages", Arrays.asList("Thanks for downloading AutoMessageDisplayer", "Cake or pie ?"), predicate -> predicate instanceof String);
             prefix = builder
                     .comment("Prefix of the message")
                     .translation("amd.config.prefix")
@@ -63,7 +63,7 @@ public class AMDConfig {
     }
 
     public static List<String> getMessages() {
-        return COMMON.messages.get();
+        return (List<String>) COMMON.messages.get();
     }
 
     public static String getMessage(int index) {

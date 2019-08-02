@@ -16,7 +16,7 @@ public class AutoMessageDisplayer {
 
     public AutoMessageDisplayer() {
         INSTANCE = this;
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AMDConfig.CONFIG_SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AMDConfig.COMMON_SPEC);
         MinecraftForge.EVENT_BUS.register(this);
     }
 }
