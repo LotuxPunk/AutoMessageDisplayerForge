@@ -5,9 +5,9 @@ import com.vandendaelen.automessagedisplayer.config.AMDConfig;
 import com.vandendaelen.automessagedisplayer.utils.PlayerHelper;
 import com.vandendaelen.automessagedisplayer.utils.Reference;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
